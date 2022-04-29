@@ -29,6 +29,8 @@ const Heroes = () => {
     const [heroes, setHeroes] = useState([]);
     const [open, setOpen] = useState(false);
 
+    const BASE_URL = "http://localhost:3000"
+
 
     const [nickname, setNickname] = useState('');
     const [realName, setRealName] = useState('');
@@ -42,24 +44,29 @@ const Heroes = () => {
     }, [])
 
     async function superHeroesRender() {
-        await fetch("/superheroes")
+        await fetch(`${BASE_URL}/superheroes`)
             .then(res => res.json())
             .then(res => setHeroes(res));
     }
 
-    const handleCreateForm = async (e) => {
+    async function handleCreateForm(e) {
         e.preventDefault();
+        const data = { nickname, real_name: realName, origin_description: descr, superpowers: power, catch_phrase: phrase }
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nickname, real_name: realName, origin_description: descr, superpowers: power, catch_phrase: phrase })
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
         };
-        await fetch(`/superheroes`, requestOptions).then((res) => console.log(res))
+        await fetch(`${BASE_URL}/superheroes`, requestOptions).then((res) => console.log(res)).catch((res) => console.log(res));
         setOpen(false);
+        superHeroesRender();
     }
 
     async function handleDeleteHero(id) {
-        await fetch(`/superheroes/${id}`, {
+        await fetch(`${BASE_URL}/superheroes/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -93,7 +100,7 @@ const Heroes = () => {
                         <CardMedia
                             component="img"
                             alt="superhero photo"
-                            height="145"
+                            height="100"
                             image=""
                         />
                         <CardContent>
@@ -112,7 +119,7 @@ const Heroes = () => {
                         <CardActions>
                             <Button size="small"><NavLink to={`/superheroes/${hero._id}`}>Learn More</NavLink></Button>
                             <Tooltip title="Delete">
-                                <IconButton>
+                                <IconButton onClick={() => handleDeleteHero(hero._id)}>
                                     <DeleteIcon />
                                 </IconButton>
                             </Tooltip>
@@ -128,7 +135,6 @@ const Heroes = () => {
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Create a Superhero</DialogTitle>
-                <form onSubmit={handleCreateForm}>
                     <DialogContent>
                         <DialogContentText>
                             To create a hero, fill in the fields with unique data
@@ -141,7 +147,7 @@ const Heroes = () => {
                             fullWidth
                             variant="standard"
                             required
-                            onChange={(e) => setNickname(e.target.nickname)}
+                            onChange={(e) => setNickname(e.target.value)}
                             value={nickname}
                         />
                         <TextField
@@ -152,7 +158,7 @@ const Heroes = () => {
                             fullWidth
                             variant="standard"
                             required
-                            onChange={(e) => setRealName(e.target.realName)}
+                            onChange={(e) => setRealName(e.target.value)}
                             value={realName}
                         />
                         <TextField
@@ -163,7 +169,7 @@ const Heroes = () => {
                             fullWidth
                             variant="standard"
                             required
-                            onChange={(e) => setDescr(e.target.descr)}
+                            onChange={(e) => setDescr(e.target.value)}
                             value={descr}
                         />
                         <TextField
@@ -174,7 +180,7 @@ const Heroes = () => {
                             fullWidth
                             variant="standard"
                             required
-                            onChange={(e) => setPower(e.target.power)}
+                            onChange={(e) => setPower(e.target.value)}
                             value={power}
                         />
                         <TextField
@@ -185,7 +191,7 @@ const Heroes = () => {
                             fullWidth
                             variant="standard"
                             required
-                            onChange={(e) => setPhrase(e.target.phrase)}
+                            onChange={(e) => setPhrase(e.target.value)}
                             value={phrase}
                         />
 
@@ -206,9 +212,8 @@ const Heroes = () => {
                     </Stack>
                     <DialogActions>
                         <Button onClick={handleClose}>Cancel</Button>
-                        <input type="submit" value="Create" />
+                        <Button onClick={handleCreateForm}>Create</Button>
                     </DialogActions>
-                </form>
             </Dialog>
         </>
     );
