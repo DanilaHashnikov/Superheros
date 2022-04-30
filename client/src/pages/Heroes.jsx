@@ -206,14 +206,14 @@ const Heroes = () => {
 
                     <Stack direction="row" alignItems="center" spacing={2}>
                         <label htmlFor="contained-button-file">
-                            <Input accept="image/*" id="contained-button-file" multiple type="file" />
-                            <Button variant="contained" component="span">
+                            <Input disabled accept="image/*" id="contained-button-file" multiple type="file" />
+                            <Button disabled variant="contained" component="span">
                                 Upload
                         </Button>
                         </label>
                         <label htmlFor="icon-button-file">
-                            <Input accept="image/*" id="icon-button-file" type="file" />
-                            <IconButton color="primary" aria-label="upload picture" component="span">
+                            <Input disabled accept="image/*" id="icon-button-file" type="file" />
+                            <IconButton disabled color="primary" aria-label="upload picture" component="span">
                                 <PhotoCamera />
                             </IconButton>
                         </label>
