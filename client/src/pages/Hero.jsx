@@ -77,7 +77,7 @@ const Hero = () => {
                         {hero.catch_phrase}
                     </Typography>
                 </CardContent>
-                <CardActions textAlign="center">
+                <CardActions textalign="center">
                     <Button onClick={handleBackClick}>back</Button>
                     <Button>
                         <NavLink className={s.navLink} to={`/superheroes/${id}/edit`}>edit</NavLink>

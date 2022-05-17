@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+body[data-theme="dark"] {
+    --colors-text: hsl(0, 0%, 100%);
+    --colors-bg: hsl(207, 26%, 17%);
+    --colors-ui-base: hsl(209, 23%, 22%);
+
+    --shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
+}
+:root {
+    background-color:#9fa1a1;
+    
+}
+body[data-theme="light"] {
+    --colors-text:hsl(200, 15%, 8%);
+    --colors-bg: hsl(0, 0%, 98%);
+    --colors-ui-base: hsl(0, 0%, 100%);
+    --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+} 
+
+body {
+    margin: 0;
+    color: var(--colors-text);
+    background-color: var(--colors-bg);
+}
+
+
+.label-styles {
+    -webkit-touch-callout: none; 
+        -webkit-user-select: none;   
+        -khtml-user-select: none;    
+        -moz-user-select: none;     
+        -ms-user-select: none;     
+        user-select: none,; 
+}
