@@ -1,5 +1,4 @@
-import Superhero from "./superheroModel.js";
-
+import Superhero from "../models/superheroModel.js"
 class ServicePost {
     async create(superhero) {
         return await Superhero.create(superhero);

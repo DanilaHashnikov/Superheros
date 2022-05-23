@@ -1,5 +1,5 @@
 import Router from "express";
-import SuperheroController from "./superheroController.js";
+import SuperheroController from "../controllers/superheroController.js";
 const router = new Router();
 
 router.get('', SuperheroController.getAll);

@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import express from "express";
 import mongoose from "mongoose";
-import superheroRouter from "./superheroRouter.js";
+import superheroRouter from './routers/superheroRouter.js'
 
 dotenv.config();
 

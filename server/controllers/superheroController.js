@@ -1,4 +1,4 @@
-import ServicePost from "./superheroService.js";
+import ServicePost from "../services/superheroService.js";
 
 class SuperheroController {
     async create(req, res) {

@@ -29,11 +29,13 @@ const Heroes = () => {
     const lastHero = frequency * page;
     const firstHero = lastHero - frequency;
 
+    console.log("heroes", heroes);
+
     const currentActivityHeroes = heroes.filter((el) => {
         if (el.nickname.toLowerCase().includes(inputField.toLowerCase())) {
             return el
         }
-        return el
+    
     }).slice(
         firstHero,
         lastHero
@@ -81,7 +83,8 @@ const Heroes = () => {
                 <input 
                     className={s.search} 
                     type="search" 
-                    placeholder="Search..." 
+                    placeholder="Search..."
+                    value={inputField} 
                     onChange={(e) => {
                     setPage(1);
                     setInputField(e.target.value)

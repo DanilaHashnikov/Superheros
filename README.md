@@ -7,12 +7,12 @@ To get started, transfer the repository to your computer, this is done in two wa
 1.
 $git init
 
-$git clone git@github.com:DanilaHashnikov/Superheros.git
+$git clone 'git@github.com:DanilaHashnikov/Superheros.git'
 
 2.
 $git init
 
-$git remote add origin git@github.com:DanilaHashnikov/Superheros.git
+$git remote add origin 'git@github.com:DanilaHashnikov/Superheros.git'
 
 $git pull origin master
 
